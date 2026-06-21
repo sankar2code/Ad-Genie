@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens — Dark Mode (Night Sky, default) ─── */
+:root {
+  --ag-bg-base:        #0D0B1E;
+  --ag-bg-subtle:      #13112A;
+  --ag-bg-surface:     #1C1A38;
+  --ag-bg-elevated:    #252348;
+  --ag-border-base:    rgba(212, 175, 55, 0.12);
+  --ag-border-strong:  rgba(212, 175, 55, 0.28);
+  --ag-fg-base:        #F5EDD6;
+  --ag-fg-subtle:      #A89B7A;
+  --ag-fg-muted:       #6B6047;
+  --ag-fg-inverted:    #0D0B1E;
+  --ag-accent:         #D4AF37;
+  --ag-accent-hover:   #B8962E;
+  --ag-accent-subtle:  rgba(212, 175, 55, 0.15);
+  --ag-genie:          #2DC7C7;
+  --ag-genie-hover:    #22AAAA;
+  --ag-genie-subtle:   rgba(45, 199, 199, 0.15);
+  --ag-success:        #3DAA6E;
+  --ag-warning:        #E6A817;
+  --ag-error:          #C94040;
+  --ag-star:           rgba(212, 175, 55, 0.60);
+}
+
+/* ─── Light Mode Override — Desert Sand (auth pages) ─── */
+[data-theme="light"] {
+  --ag-bg-base:        #FDF6E3;
+  --ag-bg-subtle:      #F5E9C8;
+  --ag-bg-surface:     #EDD9A3;
+  --ag-bg-elevated:    #E3CA84;
+  --ag-border-base:    rgba(0, 0, 0, 0.08);
+  --ag-border-strong:  rgba(139, 101, 17, 0.30);
+  --ag-fg-base:        #1C1533;
+  --ag-fg-subtle:      #5C4A1A;
+  --ag-fg-muted:       #8C7040;
+  --ag-fg-inverted:    #FDF6E3;
+  --ag-accent:         #B8962E;
+  --ag-accent-hover:   #9A7C24;
+  --ag-accent-subtle:  rgba(212, 175, 55, 0.18);
+  --ag-genie:          #1A9E9E;
+  --ag-genie-hover:    #148585;
+  --ag-genie-subtle:   rgba(45, 199, 199, 0.14);
+}
+
+/* ─── Base Resets ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Poppins', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--ag-bg-base);
+  color: var(--ag-fg-base);
+  min-height: 100vh;
+}
+
+/* ─── Typography Utilities ─── */
+.font-display { font-family: 'Cinzel', Georgia, serif; }
+.font-mono    { font-family: 'JetBrains Mono', monospace; }
+
+/* ─── Animation Utilities ─── */
+.ag-fade-in {
+  animation: agFadeIn 150ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ag-genie-reveal {
+  animation: agGenieReveal 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ag-sparkle-pulse {
+  animation: agSparklePulse 1.2s ease-in-out infinite;
+}
+
+@keyframes agFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes agGenieReveal {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes agSparklePulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.08); }
+}
+
+/* ─── Gold Shimmer on Primary Button ─── */
+.ag-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.ag-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.25) 50%, transparent 60%);
+  transform: translateX(-100%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.ag-shimmer:hover::after {
+  animation: agShimmer 600ms ease-out forwards;
+}
+
+@keyframes agShimmer {
+  to { transform: translateX(100%); }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ag-bg-subtle); }
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.45); }
