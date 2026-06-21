@@ -6,8 +6,6 @@ const nextConfig = {
     // Allow profile photos from Supabase Storage and AI-generated poster URLs.
     remotePatterns: [
       { protocol: 'https', hostname: '*.supabase.co' },
-      // OpenAI returns temporary hosted URLs for generated posters
-      { protocol: 'https', hostname: 'oaidalleapiprodscus.blob.core.windows.net' },
     ],
   },
   // instrumentationHook enables instrumentation.js for Sentry server/edge init.

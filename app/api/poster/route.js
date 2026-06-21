@@ -1,37 +1,24 @@
 /**
  * POST /api/poster
  *
- * Generates an AI ad poster via Azure OpenAI image generation REST API.
+ * Two-step poster generation:
+ *   1. Azure AI Foundry agent (AZURE_POSTER_AGENT_ID) crafts an optimised Flux prompt
+ *   2. FLUX-1.1-pro renders the image via Azure AI model inference endpoint
  *
- * Uses a separate Azure OpenAI resource endpoint (not the Foundry Agents endpoint)
- * authenticated with an API key — no Bearer token required for this call.
+ * Both steps use DefaultAzureCredential Bearer token — no API key required.
  *
  * Required env vars:
- *   AZURE_OPENAI_ENDPOINT          e.g. https://<resource>.openai.azure.com
- *   AZURE_OPENAI_API_KEY           resource-level API key from Azure Portal
- *   AZURE_OPENAI_IMAGE_DEPLOYMENT  deployment name (e.g. "dall-e-3" or "gpt-image-1")
+ *   AZURE_POSTER_AGENT_ID    UUID of the poster prompt agent in AI Foundry
+ *   AZURE_AGENT_ENDPOINT_URL Foundry project endpoint
+ *   AZURE_IMAGE_MODEL        Flux deployment name (default: FLUX-1.1-pro)
  */
 
 import { NextResponse } from 'next/server';
+import { runAgentQuery, runImageGeneration } from '@/lib/azure';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { STORE_COLORS } from '@/lib/stores';
 
-const DAILY_FREE_LIMIT    = 3;
-const IMAGE_API_VERSION   = '2024-05-01-preview';
-
-function getAzureImageEndpoint() {
-  const base       = process.env.AZURE_OPENAI_ENDPOINT?.replace(/\/$/, '');
-  const deployment = process.env.AZURE_OPENAI_IMAGE_DEPLOYMENT;
-  const apiKey     = process.env.AZURE_OPENAI_API_KEY;
-
-  if (!base || !deployment || !apiKey) {
-    throw new Error(
-      'Missing Azure OpenAI config. Set AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_IMAGE_DEPLOYMENT, and AZURE_OPENAI_API_KEY in .env.local'
-    );
-  }
-  const url = `${base}/openai/deployments/${deployment}/images/generations?api-version=${IMAGE_API_VERSION}`;
-  return { url, apiKey };
-}
+const DAILY_FREE_LIMIT = 3;
 
 async function checkDailyLimit(userId) {
   const startOfDay = new Date();
@@ -48,6 +35,58 @@ async function checkDailyLimit(userId) {
     return { allowed: true, count: 0 };
   }
   return { allowed: (count ?? 0) < DAILY_FREE_LIMIT, count: count ?? 0 };
+}
+
+/**
+ * Ask the Foundry poster agent to craft an optimised Flux image prompt.
+ * Falls back to a simple inline prompt if the agent call fails.
+ */
+async function buildImagePrompt(offer, brandColor, hasPhoto) {
+  const posterAgentId = process.env.AZURE_POSTER_AGENT_ID;
+
+  if (posterAgentId) {
+    try {
+      const agentInput = [
+        `Store:        ${offer.store}`,
+        `Headline:     ${offer.headline}`,
+        `Discount:     ${offer.discount_value || offer.discount || 'Special offer'}`,
+        `Category:     ${offer.category ?? 'General'}`,
+        `Brand Color:  ${brandColor ?? ''}`,
+        `Has Photo:    ${hasPhoto ? 'true' : 'false'}`,
+      ].join('\n');
+
+      const raw     = await runAgentQuery(agentInput, posterAgentId);
+      const cleaned = raw.replace(/```json|```/g, '').trim();
+      const parsed  = JSON.parse(cleaned);
+
+      if (parsed?.prompt) return parsed.prompt;
+    } catch (err) {
+      console.warn('[poster] Poster agent failed, using fallback prompt:', err.message);
+    }
+  }
+
+  // Fallback: build a specific, Flux-optimised prompt inline
+  const discount  = offer.discount_value || offer.discount || 'Special offer';
+  const storeName = offer.store.charAt(0).toUpperCase() + offer.store.slice(1);
+  const category  = offer.category ?? '';
+
+  return [
+    `Instagram square promotional ad poster (1080x1080), professional retail advertising design.`,
+    `Advertiser: ${storeName}.`,
+    `Offer: "${offer.headline}".`,
+    `Discount: ${discount}.`,
+    category ? `Product category: ${category}.` : '',
+    brandColor
+      ? `Use ${storeName} brand color ${brandColor} as the dominant accent on buttons, borders, and highlights.`
+      : '',
+    `Large bold headline text showing the exact discount "${discount}" as the hero element.`,
+    `Secondary text showing the offer description.`,
+    `"Shop at ${storeName}" call-to-action badge.`,
+    `Style: vibrant, high-contrast, social-media native, energetic retail ad.`,
+    `Bottom watermark: "Made with Ad-Genie" in small grey text.`,
+    hasPhoto ? `Circular-cropped user portrait photo placed prominently in the foreground.` : '',
+    `No extra people, no copyright logos, clean professional layout.`,
+  ].filter(Boolean).join(' ');
 }
 
 export async function POST(req) {
@@ -68,50 +107,17 @@ export async function POST(req) {
       }
     }
 
-    const discount   = offer.discount_value || offer.discount || 'discount';
     const brandColor = STORE_COLORS[offer.store?.toLowerCase()];
+    const hasPhoto   = Boolean(userPhotoBase64);
 
-    const prompt = `Create a vibrant, eye-catching Instagram square poster (1080×1080px) for a retail promotion.
-Store: ${offer.store}. Offer: ${offer.headline}. Discount: ${discount}.
-${brandColor ? `Use ${offer.store}'s brand color (${brandColor}) as the dominant accent.` : ''}
-Display the offer headline and discount value in bold typography.
-Style should feel energetic, modern, and social-media native.
-Add a small "Made with Ad-Genie" watermark at the bottom.
-${userPhotoBase64 ? 'Incorporate the provided user photo prominently with a circular crop, foreground centre-left.' : ''}`;
+    // Step 1: Build the image prompt (via Foundry agent or inline fallback)
+    const prompt = await buildImagePrompt(offer, brandColor, hasPhoto);
+    console.log('[poster] Full prompt:', prompt);
 
-    // Call Azure OpenAI image generation REST API
-    const { url: azureUrl, apiKey } = getAzureImageEndpoint();
-
-    const azureRes = await fetch(azureUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key': apiKey,
-      },
-      body: JSON.stringify({
-        prompt,
-        n:    1,
-        size: '1024x1024',
-        // If your deployment supports response_format, set to 'url' (default) or 'b64_json'
-      }),
-    });
-
-    if (!azureRes.ok) {
-      const errBody = await azureRes.text();
-      throw new Error(`[Azure OpenAI] Image generation failed (${azureRes.status}): ${errBody}`);
-    }
-
-    const azureData = await azureRes.json();
-    const imageUrl  = azureData.data?.[0]?.url;
-
-    if (!imageUrl) {
-      throw new Error('[Azure OpenAI] Response contained no image URL.');
-    }
+    // Step 2: Call FLUX-1.1-pro via Azure AI model inference (Bearer token auth)
+    const imageUrl = await runImageGeneration(prompt);
 
     // Persist poster record to Supabase
-    // NOTE: Azure OpenAI image URLs expire. Once the `generated-posters` Storage bucket
-    // is configured (Phase 9 in app-plan.md), download the image here and upload to
-    // Supabase Storage, then store that permanent URL instead.
     if (userId && offer.id) {
       const { error } = await supabaseAdmin
         .from('posters')

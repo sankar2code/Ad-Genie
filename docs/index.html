@@ -6,107 +6,205 @@
 <title>Ad-Genie — Your Wish for Savings</title>
 <meta name="description" content="AI-powered deals and discount discovery for Target, Walmart, CVS, Macy's, Best Buy, Whole Foods, and JCPenney.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<!-- Ambient orbs -->
+<div class="orb-layer" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
 <nav>
   <div class="wrap">
-    <a class="wordmark" href="index.html">🪔 Ad-Genie</a>
+    <a class="wordmark" href="index.html">
+      <!-- Genie Lamp SVG -->
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g class="lamp-smoke" opacity=".6">
+          <ellipse cx="32" cy="11" rx="3" ry="5" fill="url(#sg)"/>
+          <ellipse cx="27" cy="9"  rx="2" ry="3.5" fill="url(#sg)" style="animation-delay:.4s"/>
+          <ellipse cx="37" cy="10" rx="2" ry="3.5" fill="url(#sg)" style="animation-delay:.8s"/>
+        </g>
+        <path d="M10 42C10 35 18 30 32 30C46 30 54 35 54 42L52 46C50 50 44 52 32 52C20 52 14 50 12 46Z" fill="url(#lb)" stroke="url(#ls)" stroke-width="1.5"/>
+        <path d="M26 30C26 26 28 22 32 20C36 22 38 26 38 30" fill="url(#nb)" stroke="url(#ls)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M52 38C56 36 62 35 62 38C62 41 56 42 52 42Z" fill="url(#sb)" stroke="url(#ls)" stroke-width="1"/>
+        <path d="M12 38C8 36 4 34 4 38C4 43 8 45 12 44" fill="none" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="62" cy="37" rx="3" ry="4" fill="url(#fb)" class="lamp-flame"/>
+        <path d="M14 44C18 46 24 47 32 47C40 47 46 46 50 44" fill="none" stroke="rgba(251,191,36,.4)" stroke-width="1" stroke-linecap="round"/>
+        <ellipse cx="22" cy="36" rx="5" ry="3" fill="rgba(255,255,255,.1)" transform="rotate(-20 22 36)"/>
+        <defs>
+          <linearGradient id="lb" x1="10" y1="30" x2="54" y2="52" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#8B5CF6"/><stop offset="50%" stop-color="#6D28D9"/><stop offset="100%" stop-color="#4C1D95"/></linearGradient>
+          <linearGradient id="nb" x1="26" y1="20" x2="38" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+          <linearGradient id="sb" x1="52" y1="35" x2="62" y2="42" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#5B21B6"/></linearGradient>
+          <linearGradient id="ls" x1="4" y1="20" x2="64" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#FBBF24" stop-opacity=".8"/><stop offset="1" stop-color="#A78BFA" stop-opacity=".6"/></linearGradient>
+          <linearGradient id="fb" x1="59" y1="33" x2="65" y2="41" gradientUnits="userSpaceOnUse"><stop stop-color="#FBBF24"/><stop offset="1" stop-color="#F97316"/></linearGradient>
+          <radialGradient id="sg"><stop stop-color="#A78BFA" stop-opacity=".8"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/></radialGradient>
+        </defs>
+      </svg>
+      <span class="gradient-text">Ad-Genie</span>
+    </a>
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
       <a href="offers.html">Offers</a>
       <a href="dashboard.html">Dashboard</a>
       <a href="profile.html">Profile</a>
-      <a href="https://github.com/sankar2code/Ad-Genie">GitHub</a>
+      <a href="https://github.com/sankar2code/Ad-Genie" class="github">GitHub ↗</a>
     </div>
   </div>
 </nav>
 
+<!-- Hero -->
 <header class="hero">
-  <div class="wrap">
-    <h1>Your wish for <span>savings</span> is granted</h1>
-    <p>Ad-Genie finds location-aware deals across seven major retailers and turns any offer into a personalised AI ad poster and a ready-to-post hashtag set — in seconds.</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="offers.html">Click through the app</a>
-      <a class="btn btn-ghost" href="https://github.com/sankar2code/Ad-Genie">View source on GitHub</a>
-    </div>
+  <!-- Floating lamp hero -->
+  <div class="hero-lamp ag-float">
+    <svg width="120" height="120" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 40px rgba(139,92,246,.6))">
+      <g opacity=".7">
+        <ellipse cx="32" cy="11" rx="3" ry="5" fill="url(#hsg)" style="animation:smokeRise 2.2s ease-out 0s infinite"/>
+        <ellipse cx="27" cy="9"  rx="2" ry="3.5" fill="url(#hsg)" style="animation:smokeRise 2.2s ease-out .4s infinite"/>
+        <ellipse cx="37" cy="10" rx="2" ry="3.5" fill="url(#hsg)" style="animation:smokeRise 2.2s ease-out .8s infinite"/>
+      </g>
+      <path d="M10 42C10 35 18 30 32 30C46 30 54 35 54 42L52 46C50 50 44 52 32 52C20 52 14 50 12 46Z" fill="url(#hlb)" stroke="url(#hls)" stroke-width="1.5"/>
+      <path d="M26 30C26 26 28 22 32 20C36 22 38 26 38 30" fill="url(#hnb)" stroke="url(#hls)" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M52 38C56 36 62 35 62 38C62 41 56 42 52 42Z" fill="url(#hsb)" stroke="url(#hls)" stroke-width="1"/>
+      <path d="M12 38C8 36 4 34 4 38C4 43 8 45 12 44" fill="none" stroke="url(#hls)" stroke-width="2" stroke-linecap="round"/>
+      <ellipse cx="62" cy="37" rx="3" ry="4" fill="url(#hfb)" style="animation:pulseGlow 1.4s ease-in-out infinite"/>
+      <path d="M14 44C18 46 24 47 32 47C40 47 46 46 50 44" fill="none" stroke="rgba(251,191,36,.5)" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="22" cy="36" rx="5" ry="3" fill="rgba(255,255,255,.12)" transform="rotate(-20 22 36)"/>
+      <!-- Stars -->
+      <g style="animation:sparkle 1.8s ease-in-out .2s infinite"><path d="M20 20L21 18L22 20L24 21L22 22L21 24L20 22L18 21Z" fill="#FBBF24"/></g>
+      <g style="animation:sparkle 1.8s ease-in-out .9s infinite"><path d="M43 16L44 14L45 16L47 17L45 18L44 20L43 18L41 17Z" fill="#A78BFA"/></g>
+      <g style="animation:sparkle 1.8s ease-in-out 1.5s infinite"><path d="M12 28L13 27L14 28L15 29L14 30L13 31L12 30L11 29Z" fill="#14B8A6"/></g>
+      <defs>
+        <linearGradient id="hlb" x1="10" y1="30" x2="54" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"/><stop offset=".5" stop-color="#6D28D9"/><stop offset="1" stop-color="#4C1D95"/></linearGradient>
+        <linearGradient id="hnb" x1="26" y1="20" x2="38" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+        <linearGradient id="hsb" x1="52" y1="35" x2="62" y2="42" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#5B21B6"/></linearGradient>
+        <linearGradient id="hls" x1="4" y1="20" x2="64" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#FBBF24" stop-opacity=".8"/><stop offset="1" stop-color="#A78BFA" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hfb" x1="59" y1="33" x2="65" y2="41" gradientUnits="userSpaceOnUse"><stop stop-color="#FBBF24"/><stop offset="1" stop-color="#F97316"/></linearGradient>
+        <radialGradient id="hsg"><stop stop-color="#A78BFA" stop-opacity=".8"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/></radialGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="hero-badge"><span class="dot"></span> Your wish for savings is granted</div>
+
+  <h1>Discover deals.<br><span class="gradient-text">Save like magic.</span></h1>
+  <p>Ad-Genie surfaces location-aware discounts from your favourite retailers, generates AI-powered ad posters, and conjures perfect hashtags — all in seconds.</p>
+
+  <div class="cta-row">
+    <a class="btn btn-gold" href="offers.html">✨ Click through the app</a>
+    <a class="btn btn-ghost" href="https://github.com/sankar2code/Ad-Genie">View source on GitHub</a>
+  </div>
+
+  <div class="trust-bar">
+    <span class="trust-item">🔒 No credit card</span>
+    <span class="dot"></span>
+    <span class="trust-item">🤖 AI-powered</span>
+    <span class="dot"></span>
+    <span class="trust-item">⚡ Instant results</span>
   </div>
 </header>
 
-<section id="features">
+<!-- Features -->
+<section style="z-index:1;position:relative;">
   <div class="wrap">
-    <h2>What it does</h2>
+    <p class="section-label" style="color:#8B5CF6;">What the Genie grants</p>
+    <h2>Six wishes, one platform</h2>
     <div class="features">
       <div class="feature-card">
-        <div class="icon">📍</div>
-        <h3>Location-aware deal discovery</h3>
-        <p>Browser geolocation + Google Places find the nearest store for every retailer within 10 miles, surfacing the right offer format automatically.</p>
+        <div class="feature-icon" style="background:rgba(20,184,166,.12);border-color:rgba(20,184,166,.25);">📍</div>
+        <h3>Location-Aware Deals</h3>
+        <p>Browser geolocation + Google Places surface the nearest offers within 10 miles automatically.</p>
       </div>
       <div class="feature-card">
-        <div class="icon">🎫</div>
-        <h3>Online &amp; in-store redemption</h3>
-        <p>Copy a coupon code at checkout or show a generated QR code in-store — Ad-Genie picks the right format per offer.</p>
+        <div class="feature-icon" style="background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.25);">🎫</div>
+        <h3>Online Coupon Codes</h3>
+        <p>One-click copy for codes that work at checkout. No hunting, no typing.</p>
       </div>
       <div class="feature-card">
-        <div class="icon">🪄</div>
-        <h3>AI ad poster generator</h3>
-        <p>Turns any deal into a personalised, on-brand social poster using OpenAI's image model — with your photo, if you choose.</p>
+        <div class="feature-icon" style="background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.3);">📱</div>
+        <h3>In-Store QR Codes</h3>
+        <p>Show your screen at the register. Instant savings, zero printing.</p>
       </div>
       <div class="feature-card">
-        <div class="icon">#</div>
-        <h3>Instant hashtag sets</h3>
-        <p>GPT-4o generates 15–20 ready-to-paste hashtags tuned to the retailer, category, and discount.</p>
+        <div class="feature-icon" style="background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.3);">🪄</div>
+        <h3>AI Ad Poster Generator</h3>
+        <p>Turns any deal into a personalised on-brand social poster using Azure AI FLUX — with your photo if you choose.</p>
       </div>
       <div class="feature-card">
-        <div class="icon">📊</div>
-        <h3>Savings dashboard</h3>
-        <p>Twelve KPIs, a 30-day savings chart, and a chronological activity feed — all computed from real redemption data.</p>
+        <div class="feature-icon" style="background:rgba(20,184,166,.12);border-color:rgba(20,184,166,.25);">#</div>
+        <h3>Instant Hashtag Sets</h3>
+        <p>Grok-4.3 generates 15–20 ready-to-paste hashtags tuned to the retailer, category, and discount.</p>
       </div>
       <div class="feature-card">
-        <div class="icon">🔖</div>
-        <h3>Bookmarking &amp; expiry alerts</h3>
-        <p>Save offers for later and see an expiry countdown before they vanish.</p>
+        <div class="feature-icon" style="background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.25);">📊</div>
+        <h3>Savings Dashboard</h3>
+        <p>Twelve KPIs, a 30-day savings chart, and a chronological activity feed from real redemption data.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="retailers" class="retailers">
+<!-- Retailers -->
+<section class="retailers-section" style="z-index:1;">
   <div class="wrap">
+    <p class="section-label" style="color:#14B8A6;margin-bottom:16px;">Deals conjured from</p>
     <h2>Seven retailers, one feed</h2>
     <div class="retailer-strip">
-      <div class="retailer-pill"><span class="retailer-dot" style="background:#CC0000"></span>Target</div>
-      <div class="retailer-pill"><span class="retailer-dot" style="background:#0071CE"></span>Walmart</div>
-      <div class="retailer-pill"><span class="retailer-dot" style="background:#CC0000"></span>CVS</div>
-      <div class="retailer-pill"><span class="retailer-dot" style="background:#E21A2C"></span>Macy's</div>
-      <div class="retailer-pill"><span class="retailer-dot" style="background:#0046BE"></span>Best Buy</div>
-      <div class="retailer-pill"><span class="retailer-dot" style="background:#00674B"></span>Whole Foods</div>
-      <div class="retailer-pill"><span class="retailer-dot" style="background:#BA0C2F"></span>JCPenney</div>
+      <div class="retailer-pill"><span class="retailer-dot" style="background:#EF4444;box-shadow:0 0 8px #EF4444;"></span>Target</div>
+      <div class="retailer-pill"><span class="retailer-dot" style="background:#3B82F6;box-shadow:0 0 8px #3B82F6;"></span>Walmart</div>
+      <div class="retailer-pill"><span class="retailer-dot" style="background:#EF4444;box-shadow:0 0 8px #EF4444;"></span>CVS</div>
+      <div class="retailer-pill"><span class="retailer-dot" style="background:#EC4899;box-shadow:0 0 8px #EC4899;"></span>Macy's</div>
+      <div class="retailer-pill"><span class="retailer-dot" style="background:#FBBF24;box-shadow:0 0 8px #FBBF24;"></span>Best Buy</div>
+      <div class="retailer-pill"><span class="retailer-dot" style="background:#10B981;box-shadow:0 0 8px #10B981;"></span>Whole Foods</div>
+      <div class="retailer-pill"><span class="retailer-dot" style="background:#A78BFA;box-shadow:0 0 8px #A78BFA;"></span>JCPenney</div>
     </div>
   </div>
 </section>
 
-<section>
+<!-- Tech stack -->
+<section style="z-index:1;position:relative;">
   <div class="wrap">
+    <p class="section-label" style="color:#FBBF24;margin-bottom:16px;">Under the hood</p>
     <h2>Built with</h2>
     <div class="stack-row">
       <span class="stack-pill">Next.js 14 (App Router)</span>
       <span class="stack-pill">Supabase (Postgres + Storage)</span>
-      <span class="stack-pill">OpenAI GPT-4o &amp; gpt-image-1</span>
+      <span class="stack-pill">Azure AI Foundry · Grok-4.3</span>
+      <span class="stack-pill">Azure AI · FLUX-1.1-pro</span>
       <span class="stack-pill">Tailwind CSS</span>
       <span class="stack-pill">Recharts</span>
       <span class="stack-pill">Google Places API</span>
       <span class="stack-pill">Rakuten Affiliate API</span>
-      <span class="stack-pill">Vercel</span>
+      <span class="stack-pill">Pollinations.ai</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" style="z-index:1;position:relative;">
+  <div class="wrap">
+    <div class="cta-box">
+      <svg width="60" height="60" viewBox="0 0 64 64" fill="none" style="margin:0 auto 20px;display:block;" class="ag-float">
+        <path d="M10 42C10 35 18 30 32 30C46 30 54 35 54 42L52 46C50 50 44 52 32 52C20 52 14 50 12 46Z" fill="url(#ctaLamp)"/>
+        <path d="M26 30C26 26 28 22 32 20C36 22 38 26 38 30" fill="#7C3AED"/>
+        <path d="M52 38C56 36 62 35 62 38C62 41 56 42 52 42Z" fill="#6D28D9"/>
+        <ellipse cx="62" cy="37" rx="3" ry="4" fill="#FBBF24" class="lamp-flame"/>
+        <defs><linearGradient id="ctaLamp" x1="10" y1="30" x2="54" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#4C1D95"/></linearGradient></defs>
+      </svg>
+      <h2>Ready to make your wish?</h2>
+      <p>Free forever to start. Click through the live preview below.</p>
+      <a class="btn btn-gold" href="offers.html">Browse the app preview →</a>
     </div>
   </div>
 </section>
 
 <footer>
-  This is a static showcase site — click "Offers", "Dashboard", or "Profile" above for a clickable preview of each page. The live app runs on Vercel with a real database and AI backend.
-  <br>
+  <div class="footer-logo">
+    <svg width="20" height="20" viewBox="0 0 64 64" fill="none"><path d="M10 42C10 35 18 30 32 30C46 30 54 35 54 42L52 46C50 50 44 52 32 52C20 52 14 50 12 46Z" fill="#8B5CF6"/><path d="M52 38C56 36 62 35 62 38C62 41 56 42 52 42Z" fill="#6D28D9"/><ellipse cx="62" cy="37" rx="3" ry="4" fill="#FBBF24"/></svg>
+    <span class="footer-brand">Ad-Genie</span>
+  </div>
+  Static showcase site — click through the pages for a clickable preview. Live app runs on Vercel with real AI backend.<br>
   <a href="https://github.com/sankar2code/Ad-Genie">github.com/sankar2code/Ad-Genie</a>
 </footer>
 

@@ -3,65 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Offer detail — Ad-Genie preview</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<title>20% Off Home Décor — Ad-Genie</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<div class="orb-layer" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
 <nav>
   <div class="wrap">
-    <a class="wordmark" href="index.html">🪔 Ad-Genie</a>
+    <a class="wordmark" href="index.html">
+      <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+        <g class="lamp-smoke" opacity=".6"><ellipse cx="32" cy="11" rx="3" ry="5" fill="url(#ds1)"/><ellipse cx="27" cy="9" rx="2" ry="3.5" fill="url(#ds1)" style="animation-delay:.4s"/></g>
+        <path d="M10 42C10 35 18 30 32 30C46 30 54 35 54 42L52 46C50 50 44 52 32 52C20 52 14 50 12 46Z" fill="url(#dl1)" stroke="url(#dls)" stroke-width="1.5"/>
+        <path d="M26 30C26 26 28 22 32 20C36 22 38 26 38 30" fill="url(#dn1)" stroke="url(#dls)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M52 38C56 36 62 35 62 38C62 41 56 42 52 42Z" fill="#6D28D9"/>
+        <ellipse cx="62" cy="37" rx="3" ry="4" fill="url(#df1)" class="lamp-flame"/>
+        <defs>
+          <linearGradient id="dl1" x1="10" y1="30" x2="54" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#4C1D95"/></linearGradient>
+          <linearGradient id="dn1" x1="26" y1="20" x2="38" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+          <linearGradient id="dls" x1="4" y1="20" x2="64" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#FBBF24" stop-opacity=".8"/><stop offset="1" stop-color="#A78BFA" stop-opacity=".6"/></linearGradient>
+          <linearGradient id="df1" x1="59" y1="33" x2="65" y2="41" gradientUnits="userSpaceOnUse"><stop stop-color="#FBBF24"/><stop offset="1" stop-color="#F97316"/></linearGradient>
+          <radialGradient id="ds1"><stop stop-color="#A78BFA" stop-opacity=".8"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/></radialGradient>
+        </defs>
+      </svg>
+      <span class="gradient-text">Ad-Genie</span>
+    </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="offers.html" class="active">Offers</a>
       <a href="dashboard.html">Dashboard</a>
       <a href="profile.html">Profile</a>
-      <a href="https://github.com/sankar2code/Ad-Genie">GitHub</a>
+      <a href="https://github.com/sankar2code/Ad-Genie" class="github">GitHub ↗</a>
     </div>
   </div>
 </nav>
-<div class="preview-banner">Static preview — mock data only. No real coupon, poster, or hashtags are generated here.</div>
 
-<div class="page" style="max-width:640px;">
-  <a href="offers.html" class="page-sub" style="display:inline-block;margin-bottom:16px;">← Back to offers</a>
+<div class="preview-banner">🔮 Static preview — live app generates real AI posters and hashtags.</div>
 
-  <div class="card">
-    <div class="offer-top">
-      <span class="offer-store" style="color:#CC0000">Target</span>
+<main class="page-narrow">
+  <a href="offers.html" class="back-link">← Back to offers</a>
+
+  <!-- Offer header card -->
+  <div class="card" style="margin-bottom:16px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+      <div>
+        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#EF4444;display:block;margin-bottom:6px;">Target · Home Décor</span>
+        <h1 style="font-size:20px;font-weight:600;font-family:'Inter',sans-serif;line-height:1.35;">20% off all home décor this weekend — apply code at checkout</h1>
+      </div>
+      <span class="discount-badge" style="font-size:14px;padding:6px 14px;flex-shrink:0;">🏷 20% OFF</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <span class="type-badge online">Online</span>
+      <span style="font-size:12px;color:var(--fg-muted);display:flex;align-items:center;gap:4px;">⏰ Expires Jun 23, 2026</span>
+      <span style="font-size:12px;color:var(--fg-muted);display:flex;align-items:center;gap:4px;">📍 Target – Cupertino, CA (0.8 mi)</span>
     </div>
-    <h1 style="font-size:22px;font-weight:600;margin-bottom:6px;">20% off Electronics</h1>
-    <p class="page-sub">Electronics · Expires Jun 30, 2026</p>
   </div>
 
-  <div class="coupon-block" style="margin-top:16px;">
-    <p class="page-sub" style="text-transform:uppercase;letter-spacing:0.1em;">Coupon code</p>
-    <p class="coupon-code">TGT20ELEC</p>
-    <button class="btn btn-primary btn-full" disabled>Copy code</button>
+  <!-- Coupon block -->
+  <div class="coupon-block" style="margin-bottom:16px;">
+    <div class="coupon-label">Your coupon code</div>
+    <div class="coupon-code">HOMEDECOR20</div>
+    <button class="btn btn-gold" onclick="this.textContent='✅ Copied!'">📋 Copy code</button>
   </div>
 
-  <div class="card" style="margin-top:16px;text-align:center;">
-    <h3 style="font-size:16px;margin-bottom:16px;">AI Ad Poster</h3>
-    <div style="aspect-ratio:1/1;max-width:240px;margin:0 auto 16px;border:2px solid var(--ag-accent);border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--ag-bg-elevated);font-size:40px;">🪔</div>
-    <button class="btn btn-genie btn-full" disabled>Generate My Ad Poster</button>
-  </div>
-
-  <div class="card" style="margin-top:16px;">
-    <h3 style="font-size:16px;margin-bottom:12px;">Hashtags</h3>
-    <div class="chip-row">
-      <span class="chip" style="background:var(--ag-accent-subtle);color:var(--ag-accent);border-color:rgba(212,175,55,0.25);">#TargetDeals</span>
-      <span class="chip" style="background:var(--ag-accent-subtle);color:var(--ag-accent);border-color:rgba(212,175,55,0.25);">#SaveMoney</span>
-      <span class="chip" style="background:var(--ag-accent-subtle);color:var(--ag-accent);border-color:rgba(212,175,55,0.25);">#ElectronicsSale</span>
-      <span class="chip" style="background:var(--ag-accent-subtle);color:var(--ag-accent);border-color:rgba(212,175,55,0.25);">#CouponLife</span>
+  <!-- AI Poster -->
+  <div class="card" style="margin-bottom:16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div>
+        <h2 style="font-size:16px;font-weight:600;font-family:'Inter',sans-serif;">AI Ad Poster</h2>
+        <p style="font-size:12px;color:var(--fg-muted);margin-top:4px;">Generated by Azure AI FLUX · Grok-4.3</p>
+      </div>
+      <button class="btn btn-magic btn-sm">🪄 Generate new</button>
     </div>
-    <button class="btn btn-ghost btn-full" style="margin-top:12px;" disabled>Copy all hashtags</button>
+
+    <!-- Poster placeholder with lamp illustration -->
+    <div class="poster-placeholder">
+      <!-- Animated genie lamp centered in poster area -->
+      <div style="text-align:center;">
+        <svg width="72" height="72" viewBox="0 0 64 64" fill="none" class="ag-float" style="filter:drop-shadow(0 0 20px rgba(139,92,246,.5))">
+          <g opacity=".6"><ellipse cx="32" cy="11" rx="3" ry="5" fill="url(#ppsg)" style="animation:smokeRise 2.2s ease-out 0s infinite"/><ellipse cx="27" cy="9" rx="2" ry="3.5" fill="url(#ppsg)" style="animation:smokeRise 2.2s ease-out .4s infinite"/><ellipse cx="37" cy="10" rx="2" ry="3.5" fill="url(#ppsg)" style="animation:smokeRise 2.2s ease-out .8s infinite"/></g>
+          <path d="M10 42C10 35 18 30 32 30C46 30 54 35 54 42L52 46C50 50 44 52 32 52C20 52 14 50 12 46Z" fill="url(#pplb)" stroke="url(#ppls)" stroke-width="1.5"/>
+          <path d="M26 30C26 26 28 22 32 20C36 22 38 26 38 30" fill="url(#ppnb)"/>
+          <path d="M52 38C56 36 62 35 62 38C62 41 56 42 52 42Z" fill="#6D28D9"/>
+          <ellipse cx="62" cy="37" rx="3" ry="4" fill="#FBBF24" style="animation:pulseGlow 1.4s ease-in-out infinite"/>
+          <g style="animation:sparkle 1.8s ease-in-out .2s infinite"><path d="M20 20L21 18L22 20L24 21L22 22L21 24L20 22L18 21Z" fill="#FBBF24"/></g>
+          <g style="animation:sparkle 1.8s ease-in-out 1s infinite"><path d="M43 16L44 14L45 16L47 17L45 18L44 20L43 18L41 17Z" fill="#A78BFA"/></g>
+          <defs>
+            <linearGradient id="pplb" x1="10" y1="30" x2="54" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#4C1D95"/></linearGradient>
+            <linearGradient id="ppnb" x1="26" y1="20" x2="38" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+            <linearGradient id="ppls" x1="4" y1="20" x2="64" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#FBBF24" stop-opacity=".8"/><stop offset="1" stop-color="#A78BFA" stop-opacity=".5"/></linearGradient>
+            <radialGradient id="ppsg"><stop stop-color="#A78BFA" stop-opacity=".8"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/></radialGradient>
+          </defs>
+        </svg>
+        <p style="font-size:12px;color:var(--fg-muted);margin-top:10px;">Click "Generate new" to create<br>an AI-powered ad poster</p>
+      </div>
+    </div>
+
+    <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:14px;">⬇ Download poster</button>
   </div>
-</div>
+
+  <!-- AI Hashtags -->
+  <div class="card" style="margin-bottom:16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div>
+        <h2 style="font-size:16px;font-weight:600;font-family:'Inter',sans-serif;">AI Hashtags</h2>
+        <p style="font-size:12px;color:var(--fg-muted);margin-top:4px;">Generated by Grok-4.3 · 18 tags</p>
+      </div>
+      <button class="btn btn-teal btn-sm">📋 Copy all</button>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      <span class="hashtag-pill teal">#HomeDecor</span>
+      <span class="hashtag-pill magic">#TargetFinds</span>
+      <span class="hashtag-pill teal">#InteriorDesign</span>
+      <span class="hashtag-pill magic">#HomeSale</span>
+      <span class="hashtag-pill teal">#TargetStyle</span>
+      <span class="hashtag-pill magic">#DecorDeals</span>
+      <span class="hashtag-pill teal">#HomeInspo</span>
+      <span class="hashtag-pill magic">#WeekendSale</span>
+      <span class="hashtag-pill teal">#TargetRun</span>
+      <span class="hashtag-pill magic">#HomeDecorDeals</span>
+      <span class="hashtag-pill teal">#DealAlert</span>
+      <span class="hashtag-pill magic">#SavingsAlert</span>
+      <span class="hashtag-pill teal">#ShopTarget</span>
+      <span class="hashtag-pill magic">#CouponCode</span>
+      <span class="hashtag-pill teal">#DiscountDecor</span>
+      <span class="hashtag-pill magic">#HomeGoals</span>
+      <span class="hashtag-pill teal">#AdGenie</span>
+      <span class="hashtag-pill magic">#SmartShopping</span>
+    </div>
+  </div>
+
+  <!-- Store map placeholder -->
+  <div class="card">
+    <h2 style="font-size:16px;font-weight:600;font-family:'Inter',sans-serif;margin-bottom:12px;">Nearest store</h2>
+    <div style="background:var(--bg-elevated);border-radius:12px;height:120px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);margin-bottom:14px;">
+      <span style="color:var(--fg-muted);font-size:13px;">📍 Target — 19400 Stevens Creek Blvd, Cupertino · 0.8 mi</span>
+    </div>
+    <a href="#" class="btn btn-ghost btn-sm">Get directions →</a>
+  </div>
+</main>
 
 <footer>
-  This is a static preview of the Offer detail page. <a href="https://github.com/sankar2code/Ad-Genie">View source on GitHub</a>
+  <div class="footer-logo">
+    <svg width="18" height="18" viewBox="0 0 64 64" fill="none"><path d="M10 42C10 35 18 30 32 30C46 30 54 35 54 42L52 46C50 50 44 52 32 52C20 52 14 50 12 46Z" fill="#8B5CF6"/><ellipse cx="62" cy="37" rx="3" ry="4" fill="#FBBF24"/></svg>
+    <span class="footer-brand">Ad-Genie</span>
+  </div>
+  <a href="https://github.com/sankar2code/Ad-Genie">github.com/sankar2code/Ad-Genie</a>
 </footer>
 
 </body>

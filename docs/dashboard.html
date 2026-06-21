@@ -3,73 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard — Ad-Genie preview</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Dashboard — Ad-Genie</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<div class="orb-layer" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
 <nav>
   <div class="wrap">
-    <a class="wordmark" href="index.html">🪔 Ad-Genie</a>
+    <a class="wordmark" href="index.html">
+      <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+        <g class="lamp-smoke" opacity=".6"><ellipse cx="32" cy="11" rx="3" ry="5" fill="url(#das1)"/><ellipse cx="27" cy="9" rx="2" ry="3.5" fill="url(#das1)" style="animation-delay:.4s"/></g>
+        <path d="M10 42C10 35 18 30 32 30C46 30 54 35 54 42L52 46C50 50 44 52 32 52C20 52 14 50 12 46Z" fill="url(#dal1)" stroke="url(#dals)" stroke-width="1.5"/>
+        <path d="M26 30C26 26 28 22 32 20C36 22 38 26 38 30" fill="url(#dan1)"/>
+        <path d="M52 38C56 36 62 35 62 38C62 41 56 42 52 42Z" fill="#6D28D9"/>
+        <ellipse cx="62" cy="37" rx="3" ry="4" fill="url(#daf1)" class="lamp-flame"/>
+        <defs>
+          <linearGradient id="dal1" x1="10" y1="30" x2="54" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#4C1D95"/></linearGradient>
+          <linearGradient id="dan1" x1="26" y1="20" x2="38" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+          <linearGradient id="dals" x1="4" y1="20" x2="64" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#FBBF24" stop-opacity=".8"/><stop offset="1" stop-color="#A78BFA" stop-opacity=".6"/></linearGradient>
+          <linearGradient id="daf1" x1="59" y1="33" x2="65" y2="41" gradientUnits="userSpaceOnUse"><stop stop-color="#FBBF24"/><stop offset="1" stop-color="#F97316"/></linearGradient>
+          <radialGradient id="das1"><stop stop-color="#A78BFA" stop-opacity=".8"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/></radialGradient>
+        </defs>
+      </svg>
+      <span class="gradient-text">Ad-Genie</span>
+    </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="offers.html">Offers</a>
       <a href="dashboard.html" class="active">Dashboard</a>
       <a href="profile.html">Profile</a>
-      <a href="https://github.com/sankar2code/Ad-Genie">GitHub</a>
+      <a href="https://github.com/sankar2code/Ad-Genie" class="github">GitHub ↗</a>
     </div>
   </div>
 </nav>
-<div class="preview-banner">Static preview — these numbers are sample data, not your real savings.</div>
 
-<div class="page">
+<div class="preview-banner">🔮 Static preview — live dashboard pulls real Supabase data.</div>
+
+<main class="page">
   <div class="page-header">
     <div>
-      <h1>Welcome back, Shopper ✨</h1>
-      <p class="page-sub">Here's your savings overview.</p>
+      <h1>Savings Dashboard</h1>
+      <p class="page-sub">June 2026 · All stores</p>
     </div>
-    <a href="offers.html" class="btn btn-primary">Browse deals</a>
+    <button class="btn btn-ghost btn-sm">Export CSV ↓</button>
   </div>
 
-  <div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-icon accent">💰</div><div class="kpi-value accent">$84.25</div><div class="kpi-label">Total savings</div></div>
-    <div class="kpi-card"><div class="kpi-icon genie">💰</div><div class="kpi-value genie">$22.75</div><div class="kpi-label">Savings this month</div></div>
-    <div class="kpi-card"><div class="kpi-icon accent">🎫</div><div class="kpi-value accent">12</div><div class="kpi-label">Online coupons used</div></div>
-    <div class="kpi-card"><div class="kpi-icon genie">📱</div><div class="kpi-value genie">7</div><div class="kpi-label">Offline coupons used</div></div>
-    <div class="kpi-card"><div class="kpi-icon accent">🔥</div><div class="kpi-value accent">4 days</div><div class="kpi-label">Savings streak</div></div>
-    <div class="kpi-card"><div class="kpi-icon genie">⭐</div><div class="kpi-value genie">Target</div><div class="kpi-label">Favourite store</div></div>
-    <div class="kpi-card"><div class="kpi-icon accent">🪄</div><div class="kpi-value accent">3</div><div class="kpi-label">Posters generated</div></div>
-    <div class="kpi-card"><div class="kpi-icon genie">⬇️</div><div class="kpi-value genie">2</div><div class="kpi-label">Posters downloaded</div></div>
-    <div class="kpi-card"><div class="kpi-icon accent">📈</div><div class="kpi-value accent">$4.43</div><div class="kpi-label">Avg saving / coupon</div></div>
-    <div class="kpi-card"><div class="kpi-icon genie">🔖</div><div class="kpi-value genie">6</div><div class="kpi-label">Active saved offers</div></div>
-    <div class="kpi-card"><div class="kpi-icon accent">⏳</div><div class="kpi-value accent">2</div><div class="kpi-label">Expiring today</div></div>
-    <div class="kpi-card"><div class="kpi-icon genie">🏷️</div><div class="kpi-value genie">Health</div><div class="kpi-label">Top category</div></div>
+  <!-- KPI Row 1 -->
+  <div class="kpi-grid" style="margin-bottom:14px;">
+    <div class="kpi-card">
+      <div class="kpi-icon gold">💰</div>
+      <div class="kpi-value gold">$247</div>
+      <div class="kpi-label">Total Saved</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon teal">🎫</div>
+      <div class="kpi-value teal">18</div>
+      <div class="kpi-label">Coupons Used</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon magic">🏪</div>
+      <div class="kpi-value magic">7</div>
+      <div class="kpi-label">Stores Visited</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon gold">📊</div>
+      <div class="kpi-value gold">14.2%</div>
+      <div class="kpi-label">Avg. Discount</div>
+    </div>
   </div>
 
-  <div class="card">
-    <h3 style="font-size:16px;margin-bottom:16px;">Savings — last 30 days</h3>
-    <svg viewBox="0 0 560 140" width="100%" height="140" preserveAspectRatio="none">
-      <polyline points="0,120 80,90 160,100 240,55 320,80 400,30 480,60 560,20" fill="none" stroke="#D4AF37" stroke-width="2.5"/>
-      <circle cx="0" cy="120" r="3.5" fill="#D4AF37"/><circle cx="80" cy="90" r="3.5" fill="#D4AF37"/>
-      <circle cx="160" cy="100" r="3.5" fill="#D4AF37"/><circle cx="240" cy="55" r="3.5" fill="#D4AF37"/>
-      <circle cx="320" cy="80" r="3.5" fill="#D4AF37"/><circle cx="400" cy="30" r="3.5" fill="#D4AF37"/>
-      <circle cx="480" cy="60" r="3.5" fill="#D4AF37"/><circle cx="560" cy="20" r="3.5" fill="#D4AF37"/>
+  <!-- KPI Row 2 -->
+  <div class="kpi-grid" style="margin-bottom:20px;">
+    <div class="kpi-card">
+      <div class="kpi-icon teal">📍</div>
+      <div class="kpi-value teal">0.8 mi</div>
+      <div class="kpi-label">Avg. Distance</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon magic">🪄</div>
+      <div class="kpi-value magic">6</div>
+      <div class="kpi-label">AI Posters Made</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon gold">#</div>
+      <div class="kpi-value gold">94</div>
+      <div class="kpi-label">Hashtags Copied</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon teal">🔖</div>
+      <div class="kpi-value teal">12</div>
+      <div class="kpi-label">Saved Offers</div>
+    </div>
+  </div>
+
+  <!-- KPI Row 3 — smaller -->
+  <div class="kpi-grid" style="margin-bottom:28px;">
+    <div class="kpi-card">
+      <div class="kpi-icon magic">🛒</div>
+      <div class="kpi-value magic">$1,734</div>
+      <div class="kpi-label">Total Spend</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon gold">📅</div>
+      <div class="kpi-value gold">Jun 1</div>
+      <div class="kpi-label">Member Since</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon teal">🔥</div>
+      <div class="kpi-value teal">5</div>
+      <div class="kpi-label">Day Streak</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon magic">⭐</div>
+      <div class="kpi-value magic">4.8</div>
+      <div class="kpi-label">Avg. Offer Rating</div>
+    </div>
+  </div>
+
+  <!-- Savings Chart -->
+  <div class="card chart-card" style="margin-bottom:20px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <h3>Savings over 30 days</h3>
+      <div style="display:flex;gap:16px;font-size:12px;color:var(--fg-muted);">
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:3px;border-radius:2px;background:#8B5CF6;display:inline-block;"></span>Savings</span>
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:3px;border-radius:2px;background:#14B8A6;display:inline-block;"></span>Coupons</span>
+      </div>
+    </div>
+    <!-- SVG chart with Mystic Genie palette -->
+    <svg viewBox="0 0 680 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <defs>
+        <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#8B5CF6" stop-opacity=".35"/>
+          <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="chartFill2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#14B8A6" stop-opacity=".25"/>
+          <stop offset="100%" stop-color="#14B8A6" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Grid lines -->
+      <line x1="40" y1="20"  x2="660" y2="20"  stroke="rgba(139,92,246,.12)" stroke-dasharray="4,4"/>
+      <line x1="40" y1="60"  x2="660" y2="60"  stroke="rgba(139,92,246,.12)" stroke-dasharray="4,4"/>
+      <line x1="40" y1="100" x2="660" y2="100" stroke="rgba(139,92,246,.12)" stroke-dasharray="4,4"/>
+      <line x1="40" y1="140" x2="660" y2="140" stroke="rgba(139,92,246,.12)" stroke-dasharray="4,4"/>
+
+      <!-- Y-axis labels -->
+      <text x="34" y="24"  text-anchor="end" fill="rgba(139,92,246,.5)" font-size="10" font-family="Inter">$60</text>
+      <text x="34" y="64"  text-anchor="end" fill="rgba(139,92,246,.5)" font-size="10" font-family="Inter">$45</text>
+      <text x="34" y="104" text-anchor="end" fill="rgba(139,92,246,.5)" font-size="10" font-family="Inter">$30</text>
+      <text x="34" y="144" text-anchor="end" fill="rgba(139,92,246,.5)" font-size="10" font-family="Inter">$15</text>
+
+      <!-- Savings area fill -->
+      <path d="M50 130 L90 120 L130 100 L170 115 L210 85 L250 90 L290 70 L330 80 L370 55 L410 65 L450 45 L490 40 L530 50 L570 35 L610 25 L650 30 L650 155 L50 155Z" fill="url(#chartFill)"/>
+      <!-- Savings line -->
+      <path d="M50 130 L90 120 L130 100 L170 115 L210 85 L250 90 L290 70 L330 80 L370 55 L410 65 L450 45 L490 40 L530 50 L570 35 L610 25 L650 30" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Coupons area fill -->
+      <path d="M50 145 L90 140 L130 135 L170 138 L210 128 L250 130 L290 120 L330 125 L370 110 L410 118 L450 105 L490 100 L530 108 L570 95 L610 85 L650 90 L650 155 L50 155Z" fill="url(#chartFill2)"/>
+      <!-- Coupons line -->
+      <path d="M50 145 L90 140 L130 135 L170 138 L210 128 L250 130 L290 120 L330 125 L370 110 L410 118 L450 105 L490 100 L530 108 L570 95 L610 85 L650 90" stroke="#14B8A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6,3"/>
+
+      <!-- Dots on savings line -->
+      <circle cx="490" cy="40" r="4" fill="#8B5CF6" stroke="var(--bg-surface)" stroke-width="2"/>
+      <circle cx="610" cy="25" r="4" fill="#FBBF24" stroke="var(--bg-surface)" stroke-width="2"/>
+
+      <!-- X-axis labels -->
+      <text x="50"  y="170" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="9" font-family="Inter">Jun 1</text>
+      <text x="170" y="170" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="9" font-family="Inter">Jun 8</text>
+      <text x="290" y="170" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="9" font-family="Inter">Jun 15</text>
+      <text x="410" y="170" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="9" font-family="Inter">Jun 22</text>
+      <text x="530" y="170" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="9" font-family="Inter">Jun 29</text>
     </svg>
   </div>
 
-  <div class="card">
-    <h3 style="font-size:16px;margin-bottom:8px;">Recent activity</h3>
-    <div class="activity-row"><span>20% off Electronics — Target</span><div style="text-align:right;"><div class="activity-amount">$8.00</div><div class="activity-time">2h ago</div></div></div>
-    <div class="activity-row"><span>AI poster generated — Whole Foods</span><div style="text-align:right;"><div class="activity-time">3h ago</div></div></div>
-    <div class="activity-row"><span>Hashtags copied — Best Buy offer</span><div style="text-align:right;"><div class="activity-time">Yesterday</div></div></div>
-    <div class="activity-row"><span>30% off Home Décor — JCPenney</span><div style="text-align:right;"><div class="activity-amount">$9.50</div><div class="activity-time">Yesterday</div></div></div>
+  <!-- Top stores + Activity feed side by side -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+    <!-- Top stores -->
+    <div class="card">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:16px;font-family:'Inter',sans-serif;">Savings by store</h3>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;"><span>Target</span><span style="color:var(--gold);font-weight:700;">$82</span></div>
+          <div style="height:6px;background:rgba(139,92,246,.15);border-radius:3px;"><div style="width:82%;height:100%;background:linear-gradient(90deg,#EF4444,#FBBF24);border-radius:3px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;"><span>Whole Foods</span><span style="color:var(--gold);font-weight:700;">$61</span></div>
+          <div style="height:6px;background:rgba(139,92,246,.15);border-radius:3px;"><div style="width:61%;height:100%;background:linear-gradient(90deg,#10B981,#14B8A6);border-radius:3px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;"><span>Best Buy</span><span style="color:var(--gold);font-weight:700;">$50</span></div>
+          <div style="height:6px;background:rgba(139,92,246,.15);border-radius:3px;"><div style="width:50%;height:100%;background:linear-gradient(90deg,#FBBF24,#D97706);border-radius:3px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;"><span>Macy's</span><span style="color:var(--gold);font-weight:700;">$34</span></div>
+          <div style="height:6px;background:rgba(139,92,246,.15);border-radius:3px;"><div style="width:34%;height:100%;background:linear-gradient(90deg,#EC4899,#A78BFA);border-radius:3px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;"><span>Others</span><span style="color:var(--gold);font-weight:700;">$20</span></div>
+          <div style="height:6px;background:rgba(139,92,246,.15);border-radius:3px;"><div style="width:20%;height:100%;background:linear-gradient(90deg,#8B5CF6,#6D28D9);border-radius:3px;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity feed -->
+    <div class="card">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:4px;font-family:'Inter',sans-serif;">Recent activity</h3>
+      <div class="activity-row">
+        <div><div class="activity-label">Target — Home Décor 20% off</div><div class="activity-time">Today · 2:14 PM</div></div>
+        <div class="activity-amount">−$24.60</div>
+      </div>
+      <div class="activity-row">
+        <div><div class="activity-label">Whole Foods — Prime 10% off</div><div class="activity-time">Jun 20 · 11:02 AM</div></div>
+        <div class="activity-amount">−$18.40</div>
+      </div>
+      <div class="activity-row">
+        <div><div class="activity-label">Best Buy — Laptop $50 off</div><div class="activity-time">Jun 19 · 4:45 PM</div></div>
+        <div class="activity-amount">−$50.00</div>
+      </div>
+      <div class="activity-row">
+        <div><div class="activity-label">Walmart — Groceries $15 off</div><div class="activity-time">Jun 18 · 9:30 AM</div></div>
+        <div class="activity-amount">−$15.00</div>
+      </div>
+      <div class="activity-row">
+        <div><div class="activity-label">CVS — BOGO Vitamins</div><div class="activity-time">Jun 17 · 3:10 PM</div></div>
+        <div class="activity-amount">−$12.99</div>
+      </div>
+    </div>
+
   </div>
-</div>
+
+</main>
 
 <footer>
-  This is a static preview of the Dashboard page. <a href="https://github.com/sankar2code/Ad-Genie">View source on GitHub</a>
+  <div class="footer-logo">
+    <svg width="18" height="18" viewBox="0 0 64 64" fill="none"><path d="M10 42C10 35 18 30 32 30C46 30 54 35 54 42L52 46C50 50 44 52 32 52C20 52 14 50 12 46Z" fill="#8B5CF6"/><ellipse cx="62" cy="37" rx="3" ry="4" fill="#FBBF24"/></svg>
+    <span class="footer-brand">Ad-Genie</span>
+  </div>
+  <a href="https://github.com/sankar2code/Ad-Genie">github.com/sankar2code/Ad-Genie</a>
 </footer>
 
 </body>
