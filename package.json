@@ -10,13 +10,13 @@
     "setup:storage": "node scripts/setup-storage-buckets.mjs"
   },
   "dependencies": {
+    "@azure/identity": "^4.13.1",
+    "@sentry/nextjs": "^10.59.0",
     "@supabase/supabase-js": "^2.44.2",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "lucide-react": "^0.383.0",
     "next": "^14.2.35",
-    "openai": "^4.52.0",
-    "@sentry/nextjs": "^10.59.0",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

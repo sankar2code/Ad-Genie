@@ -3,9 +3,7 @@ import { withSentryConfig } from '@sentry/nextjs';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // Allow profile photos and generated posters served from Supabase Storage.
-    // On Netlify, next/image optimisation is handled by the Netlify Image CDN
-    // (applied automatically by @netlify/plugin-nextjs — no extra config needed).
+    // Allow profile photos from Supabase Storage and AI-generated poster URLs.
     remotePatterns: [
       { protocol: 'https', hostname: '*.supabase.co' },
       // OpenAI returns temporary hosted URLs for generated posters
