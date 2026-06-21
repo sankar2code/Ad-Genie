@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Ticket, QrCode, ChevronRight, Bookmark, Tag } from 'lucide-react';
+import { Ticket, QrCode, ChevronRight, Heart, Tag } from 'lucide-react';
 import { STORE_COLORS, STORE_LABELS } from '@/lib/stores';
 
 const STALE_MS = 4 * 60 * 60 * 1000;
@@ -26,34 +26,52 @@ export default function OfferCard({ offer, saved = false, onToggleSave }) {
       style={{
         background: 'rgba(17,13,44,0.85)',
         backdropFilter: 'blur(10px)',
-        border: '1px solid rgba(139,92,246,0.18)',
-        boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
+        border: saved ? '1px solid rgba(251,191,36,0.3)' : '1px solid rgba(139,92,246,0.18)',
+        boxShadow: saved
+          ? '0 4px 24px rgba(0,0,0,0.4), 0 0 14px rgba(251,191,36,0.08)'
+          : '0 4px 24px rgba(0,0,0,0.4)',
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.border = '1px solid rgba(139,92,246,0.4)';
+        e.currentTarget.style.border = saved
+          ? '1px solid rgba(251,191,36,0.55)'
+          : '1px solid rgba(139,92,246,0.4)';
         e.currentTarget.style.boxShadow = `0 8px 40px rgba(0,0,0,0.5), 0 0 20px ${storeColor}18`;
       }}
       onMouseLeave={e => {
-        e.currentTarget.style.border = '1px solid rgba(139,92,246,0.18)';
-        e.currentTarget.style.boxShadow = '0 4px 24px rgba(0,0,0,0.4)';
+        e.currentTarget.style.border = saved
+          ? '1px solid rgba(251,191,36,0.3)'
+          : '1px solid rgba(139,92,246,0.18)';
+        e.currentTarget.style.boxShadow = saved
+          ? '0 4px 24px rgba(0,0,0,0.4), 0 0 14px rgba(251,191,36,0.08)'
+          : '0 4px 24px rgba(0,0,0,0.4)';
       }}
     >
       {/* Store color top accent bar */}
       <div className="absolute top-0 left-4 right-4 h-[2px] rounded-b-full opacity-60 transition-opacity group-hover:opacity-100"
         style={{ background: `linear-gradient(90deg, transparent, ${storeColor}, transparent)` }} />
 
-      {/* Save button */}
+      {/* Heart / Favourite button */}
       {onToggleSave && (
         <button
           onClick={handleSaveClick}
-          aria-label={saved ? `Remove ${headline} from saved offers` : `Save ${headline}`}
+          aria-label={saved ? `Remove ${headline} from favourites` : `Add ${headline} to favourites`}
           aria-pressed={saved}
-          className="absolute top-3.5 right-3.5 w-7 h-7 flex items-center justify-center rounded-lg transition-all hover:scale-110"
-          style={{ background: 'rgba(139,92,246,0.15)', border: '1px solid rgba(139,92,246,0.2)' }}
+          className="absolute top-3.5 right-3.5 w-8 h-8 flex items-center justify-center rounded-xl transition-all duration-150 hover:scale-110 active:scale-95"
+          style={saved ? {
+            background: 'rgba(251,191,36,0.18)',
+            border: '1px solid rgba(251,191,36,0.4)',
+            boxShadow: '0 0 12px rgba(251,191,36,0.25)',
+          } : {
+            background: 'rgba(139,92,246,0.12)',
+            border: '1px solid rgba(139,92,246,0.2)',
+          }}
         >
-          <Bookmark
-            className={`w-3.5 h-3.5 transition-colors ${saved ? 'text-ag-accent fill-ag-accent' : 'text-ag-fg-muted'}`}
-            strokeWidth={1.5}
+          <Heart
+            className="w-4 h-4 transition-all duration-150"
+            style={saved
+              ? { color: '#FBBF24', fill: '#FBBF24', filter: 'drop-shadow(0 0 4px rgba(251,191,36,0.6))' }
+              : { color: '#5B4D8C', fill: 'none' }}
+            strokeWidth={saved ? 0 : 1.8}
           />
         </button>
       )}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { MapPin, Search, SlidersHorizontal } from 'lucide-react';
+import { MapPin, Search, SlidersHorizontal, Heart } from 'lucide-react';
 import OfferCard from '@/components/OfferCard';
 import ZipFallbackModal from '@/components/ZipFallbackModal';
 import { useToast } from '@/components/Toast';
@@ -9,7 +9,7 @@ import { STORE_KEYS, STORE_LABELS as BASE_STORE_LABELS } from '@/lib/stores';
 
 const STORES = ['All', ...STORE_KEYS];
 const STORE_LABELS = { All: 'All', ...BASE_STORE_LABELS };
-const TABS = ['online', 'offline'];
+const TABS = ['online', 'offline', 'favorites'];
 const EXPIRY_RANGES = [
   { value: 'all', label: 'Any time' },
   { value: 'today', label: 'Expiring today' },
@@ -139,7 +139,11 @@ export default function OffersPage() {
   const filtered = useMemo(() => {
     const now = Date.now();
     const result = offers.filter(o => {
-      const matchTab = o.type === activeTab;
+      // Favorites tab: show ALL saved offers regardless of type
+      const matchTab = activeTab === 'favorites'
+        ? savedIds.has(o.id)
+        : o.type === activeTab;
+
       const matchStore = activeStore === 'All' || o.store === activeStore;
       const haystack = `${o.headline} ${o.category}`.toLowerCase();
       const matchSearch = haystack.includes(search.toLowerCase());
@@ -166,7 +170,7 @@ export default function OffersPage() {
     }
 
     return result;
-  }, [offers, activeTab, activeStore, search, category, expiryRange, sortBy, storeDistances]);
+  }, [offers, activeTab, activeStore, search, category, expiryRange, sortBy, storeDistances, savedIds]);
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
@@ -264,23 +268,49 @@ export default function OffersPage() {
         ))}
       </div>
 
-      {/* Online / Offline tabs */}
-      <div className="flex border-b border-ag-border mb-6" role="tablist" aria-label="Online or offline offers">
-        {TABS.map(tab => (
-          <button
-            key={tab}
-            role="tab"
-            aria-selected={activeTab === tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-5 py-2.5 text-sm font-semibold border-b-2 transition-colors -mb-px capitalize ${
-              activeTab === tab
-                ? 'border-ag-accent text-ag-accent'
-                : 'border-transparent text-ag-fg-subtle hover:text-ag-fg-base'
-            }`}
-          >
-            {tab === 'online' ? 'Online' : 'Offline'}
-          </button>
-        ))}
+      {/* Online / Offline / Favorites tabs */}
+      <div className="flex border-b border-ag-border mb-6" role="tablist" aria-label="Filter offers by type">
+        {TABS.map(tab => {
+          const isActive = activeTab === tab;
+          const isFav = tab === 'favorites';
+          const favCount = savedIds.size;
+          return (
+            <button
+              key={tab}
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => setActiveTab(tab)}
+              className={`flex items-center gap-2 px-5 py-2.5 text-sm font-semibold border-b-2 transition-all -mb-px ${
+                isActive
+                  ? isFav
+                    ? 'border-[#FBBF24] text-[#FBBF24]'
+                    : 'border-ag-accent text-ag-accent'
+                  : 'border-transparent text-ag-fg-subtle hover:text-ag-fg-base'
+              }`}
+            >
+              {isFav && (
+                <Heart
+                  className="w-3.5 h-3.5 transition-all"
+                  style={isActive
+                    ? { color: '#FBBF24', fill: '#FBBF24', filter: 'drop-shadow(0 0 4px rgba(251,191,36,0.5))' }
+                    : { color: 'currentColor', fill: 'none' }}
+                  strokeWidth={isActive ? 0 : 1.8}
+                />
+              )}
+              {tab === 'online' ? 'Online' : tab === 'offline' ? 'Offline' : 'Favourites'}
+              {isFav && favCount > 0 && (
+                <span
+                  className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-bold leading-none"
+                  style={isActive
+                    ? { background: 'rgba(251,191,36,0.25)', color: '#FBBF24', border: '1px solid rgba(251,191,36,0.4)' }
+                    : { background: 'rgba(139,92,246,0.2)', color: '#A78BFA', border: '1px solid rgba(139,92,246,0.3)' }}
+                >
+                  {favCount}
+                </span>
+              )}
+            </button>
+          );
+        })}
       </div>
 
       {/* Offer grid */}
@@ -292,9 +322,24 @@ export default function OffersPage() {
         </div>
       ) : filtered.length === 0 ? (
         <div className="text-center py-20">
-          <p className="text-4xl mb-4">🪔</p>
-          <p className="font-display text-lg text-ag-fg-base mb-2">The Cave of Wonders is quiet…</p>
-          <p className="text-ag-fg-subtle text-sm">Try a different location or check back soon.</p>
+          {activeTab === 'favorites' ? (
+            <>
+              <div className="flex items-center justify-center w-16 h-16 rounded-2xl mx-auto mb-4"
+                style={{ background: 'rgba(251,191,36,0.1)', border: '1px solid rgba(251,191,36,0.2)' }}>
+                <Heart className="w-7 h-7" style={{ color: '#FBBF24', fill: 'none' }} strokeWidth={1.5} />
+              </div>
+              <p className="font-display text-lg text-ag-fg-base mb-2">No favourites yet</p>
+              <p className="text-ag-fg-subtle text-sm">
+                Tap the <Heart className="inline w-3.5 h-3.5 mx-0.5 align-text-bottom" strokeWidth={1.8} /> on any deal to save it here.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-4xl mb-4">🪔</p>
+              <p className="font-display text-lg text-ag-fg-base mb-2">The Cave of Wonders is quiet…</p>
+              <p className="text-ag-fg-subtle text-sm">Try a different location or check back soon.</p>
+            </>
+          )}
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
