@@ -226,13 +226,14 @@ section h2{font-size:28px;font-weight:600;text-align:center;margin-bottom:44px;}
 .chip.active{background:var(--magic-sub);color:var(--magic);border-color:rgba(139,92,246,.4);}
 
 .tab-row{display:flex;gap:0;margin-bottom:24px;border-bottom:1px solid var(--border);}
+/* Use div[role=tab] to avoid ALL browser button styling */
 .tab{
-  font-size:14px;font-weight:600;padding:10px 24px;color:var(--fg-muted);
-  /* Reset button defaults */
-  background:none;border:none;outline:none;cursor:pointer;font-family:'Inter',sans-serif;
-  /* Underline indicator only */
+  display:flex;align-items:center;gap:6px;
+  font-size:14px;font-weight:600;padding:10px 20px;color:var(--fg-muted);
+  cursor:pointer;user-select:none;
   border-bottom:2px solid transparent;margin-bottom:-1px;
   transition:color 150ms,border-color 150ms;
+  font-family:'Inter',sans-serif;
 }
 .tab:hover{color:var(--fg-base);}
 .tab.active{color:var(--gold);border-bottom-color:var(--gold);}
@@ -251,9 +252,12 @@ section h2{font-size:28px;font-weight:600;text-align:center;margin-bottom:44px;}
 .offer-card:hover{transform:translateY(-3px);border-color:rgba(139,92,246,.4);box-shadow:0 8px 40px rgba(0,0,0,.5);}
 .offer-card:hover::before{opacity:1;}
 
-.offer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-right:40px;}
-.offer-store{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
-.offer-badges{display:flex;gap:6px;align-items:center;}
+/* offer-top is now a 3-column row: store | badges | heart */
+.offer-top{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.offer-store{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;flex:1;min-width:0;white-space:nowrap;}
+.offer-badges{display:flex;gap:6px;align-items:center;flex-shrink:0;}
+/* heart sits at the end of offer-top, no absolute positioning needed */
+.heart-btn{flex-shrink:0;}
 .discount-badge{
   display:inline-flex;align-items:center;gap:4px;
   background:var(--gold-sub);color:var(--gold);
