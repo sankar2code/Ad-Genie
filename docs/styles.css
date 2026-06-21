@@ -334,3 +334,73 @@ footer a:hover{text-decoration:underline;}
   .hero h1{font-size:32px;}
   .nav-links a{padding:6px 9px;font-size:12px;}
 }
+
+/* ══════════════════════════════════════════════════════════════
+   HEART / FAVOURITE BUTTON
+   ══════════════════════════════════════════════════════════════ */
+.heart-btn {
+  position: absolute; top: 14px; right: 14px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 10px; border: none; cursor: pointer;
+  background: rgba(139,92,246,0.12);
+  border: 1px solid rgba(139,92,246,0.2);
+  transition: all 150ms; z-index: 2;
+}
+.heart-btn:hover { transform: scale(1.12); }
+.heart-btn:active { transform: scale(0.92); }
+.heart-btn svg { width: 16px; height: 16px; transition: all 150ms; }
+
+/* Unsaved state */
+.heart-btn .heart-icon { color: #5B4D8C; fill: none; stroke: #5B4D8C; stroke-width: 1.8; }
+
+/* Saved state */
+.heart-btn.saved {
+  background: rgba(251,191,36,0.18);
+  border-color: rgba(251,191,36,0.4);
+  box-shadow: 0 0 12px rgba(251,191,36,0.25);
+}
+.heart-btn.saved .heart-icon {
+  fill: #FBBF24; stroke: #FBBF24; stroke-width: 0;
+  filter: drop-shadow(0 0 4px rgba(251,191,36,0.6));
+}
+
+/* Card saved state — gold border */
+.offer-card.saved {
+  border-color: rgba(251,191,36,0.3) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 0 14px rgba(251,191,36,0.08);
+}
+.offer-card.saved:hover {
+  border-color: rgba(251,191,36,0.55) !important;
+}
+
+/* ── Favourites tab styling ── */
+.tab.tab-fav.active { color: var(--gold); border-color: var(--gold); }
+.tab.tab-fav { display: flex; align-items: center; gap: 6px; }
+.tab.tab-fav .fav-heart { width: 13px; height: 13px; transition: all 150ms; stroke-width: 1.8; }
+.tab.tab-fav.active .fav-heart { fill: var(--gold); stroke: var(--gold); stroke-width: 0; filter: drop-shadow(0 0 3px rgba(251,191,36,.5)); }
+.fav-count {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; height: 18px; padding: 0 4px;
+  border-radius: 999px; font-size: 10px; font-weight: 700; line-height: 1;
+  background: rgba(139,92,246,0.2); color: var(--fg-subtle);
+  border: 1px solid rgba(139,92,246,0.3); transition: all 150ms;
+}
+.tab.tab-fav.active .fav-count {
+  background: rgba(251,191,36,0.25); color: var(--gold);
+  border-color: rgba(251,191,36,0.4);
+}
+
+/* ── Favourites empty state ── */
+.fav-empty {
+  grid-column: 1 / -1; text-align: center; padding: 60px 24px;
+}
+.fav-empty-icon {
+  width: 60px; height: 60px; border-radius: 18px; margin: 0 auto 16px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.2);
+}
+.fav-empty-icon svg { width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.fav-empty h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+.fav-empty p  { font-size: 13px; color: var(--fg-muted); }
+.fav-empty p svg { display: inline; vertical-align: text-bottom; width: 13px; height: 13px; stroke: var(--fg-muted); stroke-width: 1.8; fill: none; }

@@ -42,7 +42,7 @@
   </div>
 </nav>
 
-<div class="preview-banner">🔮 Static preview — links are clickable. Live app connects to real AI + location services.</div>
+<div class="preview-banner">🔮 Static preview — heart buttons and tabs are interactive. Live app syncs saves to your account.</div>
 
 <main class="page">
   <div class="page-header">
@@ -53,34 +53,49 @@
     <button class="btn btn-magic btn-sm">🔄 Refresh deals</button>
   </div>
 
-  <!-- Search + filters -->
+  <!-- Search -->
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
-    <input class="search-input" type="search" placeholder="Search deals…" />
+    <input class="search-input" type="search" id="offer-search" placeholder="Search deals…" />
   </div>
 
-  <div class="chip-row">
-    <button class="chip active">All stores</button>
-    <button class="chip">Target</button>
-    <button class="chip">Walmart</button>
-    <button class="chip">CVS</button>
-    <button class="chip">Macy's</button>
-    <button class="chip">Best Buy</button>
-    <button class="chip">Whole Foods</button>
-    <button class="chip">JCPenney</button>
+  <!-- Store chips -->
+  <div class="chip-row" id="store-chips">
+    <button class="chip active" data-store="all">All stores</button>
+    <button class="chip" data-store="target">Target</button>
+    <button class="chip" data-store="walmart">Walmart</button>
+    <button class="chip" data-store="cvs">CVS</button>
+    <button class="chip" data-store="macys">Macy's</button>
+    <button class="chip" data-store="bestbuy">Best Buy</button>
+    <button class="chip" data-store="wholefoods">Whole Foods</button>
+    <button class="chip" data-store="jcpenney">JCPenney</button>
   </div>
 
-  <div class="tab-row">
-    <div class="tab active">All</div>
-    <div class="tab">Online</div>
-    <div class="tab">In-store</div>
-    <div class="tab">Saved</div>
+  <!-- Tabs: Online / Offline / Favourites -->
+  <div class="tab-row" id="offer-tabs" role="tablist">
+    <button class="tab active" data-tab="online" role="tab" aria-selected="true">Online</button>
+    <button class="tab" data-tab="offline" role="tab" aria-selected="false">Offline</button>
+    <button class="tab tab-fav" data-tab="favorites" role="tab" aria-selected="false">
+      <!-- heart SVG -->
+      <svg class="fav-heart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+      Favourites
+      <span class="fav-count" id="fav-count">0</span>
+    </button>
   </div>
 
   <!-- Offer grid -->
-  <div class="offer-grid">
+  <div class="offer-grid" id="offer-grid">
 
-    <a href="offer-detail.html" class="offer-card" style="--card-accent:linear-gradient(90deg,transparent,#EF4444,transparent)">
+    <!-- Card 1 — Target Online — pre-saved -->
+    <a href="offer-detail.html" class="offer-card saved"
+       data-type="online" data-store="target" data-headline="20% off all home décor this weekend">
+      <button class="heart-btn saved" data-id="1" onclick="toggleHeart(event,this)" aria-label="Remove from favourites">
+        <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
       <div class="offer-top">
         <span class="offer-store" style="color:#EF4444;">Target</span>
         <div class="offer-badges">
@@ -95,7 +110,14 @@
       </div>
     </a>
 
-    <a href="offer-detail.html" class="offer-card" style="--card-accent:linear-gradient(90deg,transparent,#3B82F6,transparent)">
+    <!-- Card 2 — Walmart Offline -->
+    <a href="offer-detail.html" class="offer-card"
+       data-type="offline" data-store="walmart" data-headline="$15 off groceries when you spend $75">
+      <button class="heart-btn" data-id="2" onclick="toggleHeart(event,this)" aria-label="Add to favourites">
+        <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
       <div class="offer-top">
         <span class="offer-store" style="color:#3B82F6;">Walmart</span>
         <div class="offer-badges">
@@ -110,7 +132,14 @@
       </div>
     </a>
 
-    <a href="offer-detail.html" class="offer-card" style="--card-accent:linear-gradient(90deg,transparent,#EF4444,transparent)">
+    <!-- Card 3 — CVS Offline — pre-saved -->
+    <a href="offer-detail.html" class="offer-card saved"
+       data-type="offline" data-store="cvs" data-headline="Buy one get one free on vitamins">
+      <button class="heart-btn saved" data-id="3" onclick="toggleHeart(event,this)" aria-label="Remove from favourites">
+        <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
       <div class="offer-top">
         <span class="offer-store" style="color:#EF4444;">CVS</span>
         <div class="offer-badges">
@@ -125,7 +154,14 @@
       </div>
     </a>
 
-    <a href="offer-detail.html" class="offer-card" style="--card-accent:linear-gradient(90deg,transparent,#EC4899,transparent)">
+    <!-- Card 4 — Macy's Online -->
+    <a href="offer-detail.html" class="offer-card"
+       data-type="online" data-store="macys" data-headline="30% off summer fashion free shipping">
+      <button class="heart-btn" data-id="4" onclick="toggleHeart(event,this)" aria-label="Add to favourites">
+        <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
       <div class="offer-top">
         <span class="offer-store" style="color:#EC4899;">Macy's</span>
         <div class="offer-badges">
@@ -140,7 +176,14 @@
       </div>
     </a>
 
-    <a href="offer-detail.html" class="offer-card" style="--card-accent:linear-gradient(90deg,transparent,#FBBF24,transparent)">
+    <!-- Card 5 — Best Buy Online — pre-saved -->
+    <a href="offer-detail.html" class="offer-card saved"
+       data-type="online" data-store="bestbuy" data-headline="$50 off laptops over $599">
+      <button class="heart-btn saved" data-id="5" onclick="toggleHeart(event,this)" aria-label="Remove from favourites">
+        <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
       <div class="offer-top">
         <span class="offer-store" style="color:#FBBF24;">Best Buy</span>
         <div class="offer-badges">
@@ -155,7 +198,14 @@
       </div>
     </a>
 
-    <a href="offer-detail.html" class="offer-card" style="--card-accent:linear-gradient(90deg,transparent,#10B981,transparent)">
+    <!-- Card 6 — Whole Foods Offline -->
+    <a href="offer-detail.html" class="offer-card"
+       data-type="offline" data-store="wholefoods" data-headline="10% off entire purchase Prime members">
+      <button class="heart-btn" data-id="6" onclick="toggleHeart(event,this)" aria-label="Add to favourites">
+        <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
       <div class="offer-top">
         <span class="offer-store" style="color:#10B981;">Whole Foods</span>
         <div class="offer-badges">
@@ -170,7 +220,14 @@
       </div>
     </a>
 
-    <a href="offer-detail.html" class="offer-card" style="--card-accent:linear-gradient(90deg,transparent,#A78BFA,transparent)">
+    <!-- Card 7 — JCPenney Online -->
+    <a href="offer-detail.html" class="offer-card"
+       data-type="online" data-store="jcpenney" data-headline="Clearance 40% off bedding curtains rugs">
+      <button class="heart-btn" data-id="7" onclick="toggleHeart(event,this)" aria-label="Add to favourites">
+        <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
       <div class="offer-top">
         <span class="offer-store" style="color:#A78BFA;">JCPenney</span>
         <div class="offer-badges">
@@ -185,6 +242,17 @@
       </div>
     </a>
 
+    <!-- Favourites empty state (hidden by default, shown when fav tab has 0 items) -->
+    <div class="fav-empty" id="fav-empty" style="display:none;">
+      <div class="fav-empty-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <h3>No favourites yet</h3>
+      <p>Tap the <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> on any deal to save it here.</p>
+    </div>
+
   </div><!-- /offer-grid -->
 </main>
 
@@ -195,6 +263,101 @@
   </div>
   <a href="https://github.com/sankar2code/Ad-Genie">github.com/sankar2code/Ad-Genie</a>
 </footer>
+
+<script>
+  // ── State ────────────────────────────────────────────────────────────────────
+  let activeTab   = 'online';
+  let activeStore = 'all';
+  let searchQuery = '';
+
+  // ── Heart toggle ─────────────────────────────────────────────────────────────
+  function toggleHeart(event, btn) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const card  = btn.closest('.offer-card');
+    const isSaved = btn.classList.contains('saved');
+
+    btn.classList.toggle('saved', !isSaved);
+    card.classList.toggle('saved', !isSaved);
+    btn.setAttribute('aria-label', isSaved ? 'Add to favourites' : 'Remove from favourites');
+
+    updateFavCount();
+
+    // If we're on the favourites tab and we just un-saved, refresh the view
+    if (activeTab === 'favorites') applyFilters();
+  }
+
+  // ── Count badge ──────────────────────────────────────────────────────────────
+  function updateFavCount() {
+    const n = document.querySelectorAll('.offer-card.saved').length;
+    document.getElementById('fav-count').textContent = n;
+  }
+
+  // ── Tab switching ─────────────────────────────────────────────────────────────
+  document.getElementById('offer-tabs').addEventListener('click', e => {
+    const btn = e.target.closest('[data-tab]');
+    if (!btn) return;
+    activeTab = btn.dataset.tab;
+    document.querySelectorAll('[data-tab]').forEach(t => {
+      const isFav = t.classList.contains('tab-fav');
+      const isActive = t.dataset.tab === activeTab;
+      t.classList.toggle('active', isActive);
+      t.setAttribute('aria-selected', isActive);
+    });
+    applyFilters();
+  });
+
+  // ── Store chips ───────────────────────────────────────────────────────────────
+  document.getElementById('store-chips').addEventListener('click', e => {
+    const btn = e.target.closest('[data-store]');
+    if (!btn) return;
+    activeStore = btn.dataset.store;
+    document.querySelectorAll('[data-store]').forEach(c => c.classList.toggle('active', c.dataset.store === activeStore));
+    applyFilters();
+  });
+
+  // ── Search ────────────────────────────────────────────────────────────────────
+  document.getElementById('offer-search').addEventListener('input', e => {
+    searchQuery = e.target.value.toLowerCase().trim();
+    applyFilters();
+  });
+
+  // ── Filter logic ──────────────────────────────────────────────────────────────
+  function applyFilters() {
+    const cards    = document.querySelectorAll('.offer-card');
+    const emptyEl  = document.getElementById('fav-empty');
+    let visible    = 0;
+
+    cards.forEach(card => {
+      const type     = card.dataset.type;
+      const store    = card.dataset.store;
+      const headline = (card.dataset.headline || '').toLowerCase();
+      const isSaved  = card.classList.contains('saved');
+
+      const matchTab = activeTab === 'favorites'
+        ? isSaved
+        : type === activeTab;
+      const matchStore  = activeStore === 'all' || store === activeStore;
+      const matchSearch = !searchQuery || headline.includes(searchQuery);
+
+      const show = matchTab && matchStore && matchSearch;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    // Show/hide favourites empty state
+    if (activeTab === 'favorites') {
+      emptyEl.style.display = visible === 0 ? '' : 'none';
+    } else {
+      emptyEl.style.display = 'none';
+    }
+  }
+
+  // ── Init ─────────────────────────────────────────────────────────────────────
+  updateFavCount();
+  applyFilters(); // start on Online tab
+</script>
 
 </body>
 </html>
