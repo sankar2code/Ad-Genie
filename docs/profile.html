@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile — Ad-Genie preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="wordmark" href="index.html">🪔 Ad-Genie</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="offers.html">Offers</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html" class="active">Profile</a>
+      <a href="https://github.com/sankar2code/Ad-Genie">GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="preview-banner">Static preview — no account, no upload, no save action actually happens here.</div>
+
+<div class="page" style="max-width:640px;">
+  <h1 style="margin-bottom:4px;">Profile</h1>
+  <p class="page-sub" style="margin-bottom:24px;">Your photo is used to personalise AI poster generation.</p>
+
+  <div class="card">
+    <h3 style="font-size:15px;margin-bottom:16px;">Profile photo</h3>
+    <div style="display:flex;align-items:center;gap:20px;">
+      <div class="avatar">🪔</div>
+      <div>
+        <p style="font-size:14px;font-weight:600;color:var(--ag-accent);">Upload photo</p>
+        <p class="page-sub">JPEG or PNG · Max 5MB</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:15px;margin-bottom:16px;">Account details</h3>
+    <div style="margin-bottom:14px;"><label class="field-label">Display name</label><input class="field-input" value="Jane Smith" disabled></div>
+    <div style="margin-bottom:14px;"><label class="field-label">Email</label><input class="field-input" value="jane@example.com" readonly></div>
+    <div><label class="field-label">Home zip code</label><input class="field-input" value="90210" disabled></div>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:15px;margin-bottom:16px;">Favourite stores</h3>
+    <div class="toggle-row">
+      <span class="toggle-pill on">Target</span>
+      <span class="toggle-pill">Walmart</span>
+      <span class="toggle-pill on">CVS</span>
+      <span class="toggle-pill">Macy's</span>
+      <span class="toggle-pill on">Best Buy</span>
+      <span class="toggle-pill">Whole Foods</span>
+      <span class="toggle-pill">JCPenney</span>
+    </div>
+  </div>
+
+  <button class="btn btn-primary btn-full" style="margin-top:16px;" disabled>Save profile</button>
+</div>
+
+<footer>
+  This is a static preview of the Profile page. <a href="https://github.com/sankar2code/Ad-Genie">View source on GitHub</a>
+</footer>
+
+</body>
+</html>
