@@ -1,6 +1,6 @@
 # Ad-Genie
 Next-generation AI-powered advertising platform designed to automate campaign creation, optimization, and performance analysis.
-
+URL - https://sankar.work/Ad-Genie/ 
 ## Deploying to Netlify
 
 Netlify supports Next.js 14 App Router natively — API routes, Server Components, and image optimisation all work without any static export.
