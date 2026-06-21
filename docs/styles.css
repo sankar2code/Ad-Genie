@@ -218,14 +218,24 @@ section h2{font-size:28px;font-weight:600;text-align:center;margin-bottom:44px;}
 .chip{
   font-size:12px;font-weight:600;padding:6px 16px;
   border-radius:999px;border:1px solid var(--border);
-  color:var(--fg-subtle);cursor:pointer;background:transparent;transition:all 150ms;
+  color:var(--fg-subtle);cursor:pointer;background:transparent;
+  font-family:'Inter',sans-serif;outline:none;
+  transition:all 150ms;
 }
 .chip:hover{color:var(--fg-base);border-color:var(--border-glow);}
 .chip.active{background:var(--magic-sub);color:var(--magic);border-color:rgba(139,92,246,.4);}
 
 .tab-row{display:flex;gap:0;margin-bottom:24px;border-bottom:1px solid var(--border);}
-.tab{font-size:14px;font-weight:600;padding:10px 24px;color:var(--fg-muted);border-bottom:2px solid transparent;transition:all 150ms;}
-.tab.active{color:var(--gold);border-color:var(--gold);}
+.tab{
+  font-size:14px;font-weight:600;padding:10px 24px;color:var(--fg-muted);
+  /* Reset button defaults */
+  background:none;border:none;outline:none;cursor:pointer;font-family:'Inter',sans-serif;
+  /* Underline indicator only */
+  border-bottom:2px solid transparent;margin-bottom:-1px;
+  transition:color 150ms,border-color 150ms;
+}
+.tab:hover{color:var(--fg-base);}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold);}
 
 .offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
 .offer-card{
@@ -241,7 +251,7 @@ section h2{font-size:28px;font-weight:600;text-align:center;margin-bottom:44px;}
 .offer-card:hover{transform:translateY(-3px);border-color:rgba(139,92,246,.4);box-shadow:0 8px 40px rgba(0,0,0,.5);}
 .offer-card:hover::before{opacity:1;}
 
-.offer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.offer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-right:40px;}
 .offer-store{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
 .offer-badges{display:flex;gap:6px;align-items:center;}
 .discount-badge{
@@ -375,10 +385,18 @@ footer a:hover{text-decoration:underline;}
 }
 
 /* ── Favourites tab styling ── */
-.tab.tab-fav.active { color: var(--gold); border-color: var(--gold); }
 .tab.tab-fav { display: flex; align-items: center; gap: 6px; }
-.tab.tab-fav .fav-heart { width: 13px; height: 13px; transition: all 150ms; stroke-width: 1.8; }
-.tab.tab-fav.active .fav-heart { fill: var(--gold); stroke: var(--gold); stroke-width: 0; filter: drop-shadow(0 0 3px rgba(251,191,36,.5)); }
+.tab.tab-fav.active { color: var(--gold); border-bottom-color: var(--gold); }
+.tab.tab-fav .fav-heart {
+  width: 13px; height: 13px; flex-shrink: 0;
+  stroke: currentColor; fill: none; stroke-width: 1.8;
+  transition: all 150ms;
+}
+/* When active: filled gold heart */
+.tab.tab-fav.active .fav-heart path {
+  fill: var(--gold); stroke: var(--gold); stroke-width: 0;
+  filter: drop-shadow(0 0 3px rgba(251,191,36,.5));
+}
 .fav-count {
   display: inline-flex; align-items: center; justify-content: center;
   min-width: 18px; height: 18px; padding: 0 4px;
@@ -403,4 +421,5 @@ footer a:hover{text-decoration:underline;}
 .fav-empty-icon svg { width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
 .fav-empty h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
 .fav-empty p  { font-size: 13px; color: var(--fg-muted); }
-.fav-empty p svg { display: inline; vertical-align: text-bottom; width: 13px; height: 13px; stroke: var(--fg-muted); stroke-width: 1.8; fill: none; }
+.fav-empty p svg { display: inline; vertical-align: text-bottom; width: 13px; height: 13px; fill: none; }
+.fav-empty p svg path { stroke: var(--fg-muted); stroke-width: 1.8; fill: none; }
