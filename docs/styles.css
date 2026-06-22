@@ -226,17 +226,26 @@ section h2{font-size:28px;font-weight:600;text-align:center;margin-bottom:44px;}
 .chip.active{background:var(--magic-sub);color:var(--magic);border-color:rgba(139,92,246,.4);}
 
 .tab-row{display:flex;gap:0;margin-bottom:24px;border-bottom:1px solid var(--border);}
-/* Use div[role=tab] to avoid ALL browser button styling */
 .tab{
-  display:flex;align-items:center;gap:6px;
-  font-size:14px;font-weight:600;padding:10px 20px;color:var(--fg-muted);
-  cursor:pointer;user-select:none;
-  border-bottom:2px solid transparent;margin-bottom:-1px;
-  transition:color 150ms,border-color 150ms;
+  /* Reset ALL browser button defaults */
+  -webkit-appearance:none;appearance:none;
+  background:transparent;border:none;border-radius:0;
+  padding:0;margin:0;box-shadow:none;
+  /* Layout */
+  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 20px;
+  font-size:14px;font-weight:600;color:var(--fg-muted);
   font-family:'Inter',sans-serif;
+  cursor:pointer;user-select:none;outline:none;
+  /* Bottom-only indicator via box-shadow (avoids border-model issues) */
+  box-shadow:inset 0 -2px 0 transparent;
+  margin-bottom:-1px;
+  transition:color 150ms,box-shadow 150ms;
 }
 .tab:hover{color:var(--fg-base);}
-.tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.tab.active{color:var(--gold);box-shadow:inset 0 -2px 0 var(--gold);}
+/* Ensure active on Favourites tab uses gold underline */
+.tab.tab-fav.active{color:var(--gold);box-shadow:inset 0 -2px 0 var(--gold);border-bottom-color:var(--gold);}
 
 .offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
 .offer-card{
@@ -353,17 +362,21 @@ footer a:hover{text-decoration:underline;}
    HEART / FAVOURITE BUTTON
    ══════════════════════════════════════════════════════════════ */
 .heart-btn {
-  position: absolute; top: 14px; right: 14px;
-  width: 32px; height: 32px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 10px; border: none; cursor: pointer;
+  /* Inline — lives inside .offer-top flex row, NOT absolutely positioned */
+  position: static;
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 9px;
+  -webkit-appearance: none; appearance: none;
   background: rgba(139,92,246,0.12);
   border: 1px solid rgba(139,92,246,0.2);
-  transition: all 150ms; z-index: 2;
+  cursor: pointer; outline: none;
+  transition: all 150ms;
 }
 .heart-btn:hover { transform: scale(1.12); }
 .heart-btn:active { transform: scale(0.92); }
-.heart-btn svg { width: 16px; height: 16px; transition: all 150ms; }
+.heart-btn svg { width: 15px; height: 15px; transition: all 150ms; display:block; }
 
 /* Unsaved state */
 .heart-btn .heart-icon { color: #5B4D8C; fill: none; stroke: #5B4D8C; stroke-width: 1.8; }
