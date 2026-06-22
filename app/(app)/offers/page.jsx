@@ -58,13 +58,16 @@ export default function OffersPage() {
   }, []);
 
   useEffect(() => {
+    // Load offers immediately so the page never blocks on geolocation
+    loadOffers();
     if (!navigator.geolocation) {
       setZipModalOpen(true);
       return;
     }
     navigator.geolocation.getCurrentPosition(
       pos => resolveLocation(pos.coords.latitude, pos.coords.longitude),
-      () => setZipModalOpen(true),
+      () => {/* geo failed — offers already loaded above */},
+      { timeout: 5000 },
     );
   }, []);
 
